@@ -1,0 +1,13 @@
+# Site settings
+title: Andrew Bennett
+email: bennett.andr@gmail.com
+description: > # this means to ignore newlines until "baseurl:"
+  This is a placeholder I will update you later.
+baseurl: "" # the subpath of your site, e.g. /blog/
+url: "http://arbennett.com" # the base hostname & protocol for your site
+
+github_username:  arbennett
+email_username:  bennett.andr@gmail.com
+
+# Build settings
+markdown: kramdown
