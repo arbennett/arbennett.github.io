@@ -6,10 +6,12 @@
 
 
 // Our variables
-$base-font-family: 'Playfair Display', 'Lato', Arial, sans-serif;
+$base-font-family: 'Playfair Display', serif;
 $base-font-size:   16px;
 $small-font-size:  $base-font-size * 0.875;
 $base-line-height: 1.5;
+
+$text-font-family: 'Lato', sans-serif;
 
 $spacing-unit:     30px;
 
