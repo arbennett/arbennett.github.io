@@ -3,39 +3,38 @@
  */
 .site-header {
     border-top: 0px solid $grey-color-dark;
-    border-bottom: 0px solid $grey-color-dark;
-    background-color: $grey-color-dark;
+    border-bottom: 1px solid #dddddd;
+    background-color: #f1f1f1;
     min-height: 36px;
-
     // Positioning context for the mobile navigation icon
     position: relative;
 }
 
 .site-title {
-    color: $grey-color-light;
-    font-size: 28px;
-    font-weight: 300;
-    line-height: 56px;
-    letter-spacing: -0.75px;
+    color: 0.8*$grey-color-dark;
+    font-size: 24px;
+    font-weight: 100;
+    line-height: 44px;
+    letter-spacing: -1.25px;
     margin-bottom: 0px;
     float: left;
 
     &,
     &:visited {
-        color: $grey-color-light;
+        color: $grey-color;
     }
 }
 
 .site-nav {
     float: right;
-    line-height: 56px;
+    line-height: 44px;
 
     .menu-icon {
         display: none;
     }
 
     .page-link {
-        color: $grey-color-light;
+        color: $grey-color;
         line-height: $base-line-height;
 
         // Gaps between nav items, but not on the first one
@@ -187,7 +186,7 @@
 }
 
 .post-link {
-    display: block;
+    display: inline;
     font-size: 24px;
 }
 
