@@ -7,10 +7,12 @@ layout: default
   <ul class="post-list">
     {% for post in site.posts %}
       <li>
-        <span class="post-meta">{{ post.date | date: "%b %-d, %Y" }}</span>
-        <h4>
+        <span class="post-meta">{{ post.date | date: "%b %-d, %Y" }}  
+          <svg height="16" width="24">
+            <circle cx="10.5" cy="10" r="3" stroke="#828282" stroke-width="0" fill="#828282" />
+          </svg> 
           <a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
-        </h4>
+        </span>
       </li>
     {% endfor %}
   </ul>
