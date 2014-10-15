@@ -4,10 +4,10 @@ title: About
 permalink: /about/
 ---
 
-This is the base Jekyll theme. You can find out more info about customizing your Jekyll theme, as well as basic Jekyll usage documentation at [jekyllrb.com](http://jekyllrb.com/)
+I'm a computational physicist working with [Oak Ridge National Laboratory](http://www.ornl.gov/) in the Computer Science and Mathematics Department.  Currently I am working on the Eclipse Integrated Computational Environment developed at ORNL, sponsored by the Eclipse foundation.  Specifically I am developing infrastructure for climate and battery simulations.  
 
-You can find the source code for the Jekyll new theme at: [github.com/jglovier/jekyll-new](https://github.com/jglovier/jekyll-new)
+I have degrees in physics and mathematics from the [University of Wisconsin at La Crosse](http://www.uwlax.edu).  I am interested in all aspects of computational science.  Primarily my homegrown projects are simulations of toy systems (due to hardware limitations) often employing cellular automata and MCMC like methods.  
 
-You can find the source code for Jekyll at [github.com/jekyll/jekyll](https://github.com/jekyll/jekyll)
+Outside of science and technology I enjoy hiking, cooking, and most forms of art.  You'll probably see a number of posts on these subjects sprinkled throughout the sciency things.  I'll try to keep everything tagged nicely so that you can skip parts that you don't like.
 
-I am editing this file too.
+For more information or an updated resume send me an email (link at the bottom of the page).
