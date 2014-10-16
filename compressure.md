@@ -12,9 +12,28 @@ Huffman Encoding
 ================
 The Huffman Encoding method was first described by David Huffman in the early 1950's [\[1\]](http://compression.ru/download/articles/huff/huffman_1952_minimum-redundancy-codes.pdf).   The algorithm takes fixed-length data and converts each symbol to a variable length code based on the number of times the symbol occurs (symbols that occur more often get shorter codes, less likely symbols get longer codes).  For the sake of demonstration we will assume that the data we'd like to compress is pure text data, encoded in ASCII or UTF-8.  For more information about how ASCII encoded text works check out [\[2\]](http://en.wikipedia.org/wiki/ASCII) and [\[3\]](http://en.wikipedia.org/wiki/UTF-8).
 
-In ASCII each character in a text document is 7-bits long, and in UTF-8 a character occurring in the ASCII alphabet is encoded in 8-bits (1 byte).  This encoding gives all characters equal weight, leading to an inefficient (although conveniently standardized) storage method.  By giving each character a variable length code we can reduce the number of bits required to store the data, hence compression.  To do this we will begin by constructing the Huffman Tree.
+In ASCII each character in a text document is 7-bits long, and in UTF-8 a character occurring in the ASCII alphabet is encoded in 8-bits (1 byte).  This encoding gives all characters equal weight, leading to an inefficient (although conveniently standardized) storage method.  By giving each character a variable length code we can reduce the number of bits required to store the data, hence compression.  To do this we will begin by constructing the Huffman tree.  We will use a simple method of building the tree with a priority queue that has a time complexity of O(log n).  There is an O(n) method of building the tree if the symbols are sorted by the frequency which they occur, but we will not worry ourselves with it.  
 
-  
+The first step to building the Huffman tree is to count the number of times each character occurs in the data set we are trying to compress.  Once we have the characters and their frequencies we will build the tree.  Each of the leaf nodes of the tree will contain one of the character and the number of times it occurred in the data.  We begin by putting each of these nodes into the priority queue:
+
+	for(int i = 0; i < charFreqs.length -1 ; i++){
+		if(charFreqs[i] > 0){
+			huffQueue.offer( new HuffmanTree<Character>((char) i, charFreqs[i]) );
+		}
+	}
+
+Then we can build up our tree by popping two elements off of the queue and combining them into a new Huffman tree, and finally putting that back onto the priority queue.  We do this until the final tree is all that is in the queue:
+
+
+	while(huffQueue.size() > 1){
+		leftTree = huffQueue.poll();
+		rightTree = huffQueue.poll();
+		tempTree = new HuffmanTree<Character>(leftTree, rightTree);
+		huffQueue.offer(tempTree);
+	}
+
+Once we have the tree we can begin building the codes used to compress the data.
+
 
 Huffman Decoding
 ================
