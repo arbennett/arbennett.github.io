@@ -14,7 +14,7 @@ The Huffman Encoding method was first described by David Huffman in the early 19
 
 In ASCII each character in a text document is 7-bits long, and in UTF-8 a character occurring in the ASCII alphabet is encoded in 8-bits (1 byte).  This encoding gives all characters equal weight, leading to an inefficient (although conveniently standardized) storage method.  By giving each character a variable length code we can reduce the number of bits required to store the data, hence compression.  To do this we will begin by constructing the Huffman tree.  We will use a simple method of building the tree with a priority queue that has a time complexity of O(log n).  There is an O(n) method of building the tree if the symbols are sorted by the frequency which they occur, but we will not worry ourselves with it.  
 
-The first step to building the Huffman tree is to count the number of times each character occurs in the data set we are trying to compress.  Once we have the characters and their frequencies we will build the tree.  Each of the leaf nodes of the tree will contain one of the character and the number of times it occurred in the data.  We begin by putting each of these nodes into the priority queue:
+The first step to building the Huffman tree is to count the number of times each character occurs in the data set we are trying to compress.  Once we have the characters and their frequencies we will build the tree.  Each of the leaf nodes of the tree will contain one of the characters and the number of times it occurred in the data.  We begin by putting each of these nodes into the priority queue:
 
 	for(int i = 0; i < charFreqs.length -1 ; i++){
 		if(charFreqs[i] > 0){
@@ -53,6 +53,33 @@ Once we have the tree we can begin building the codes used to compress the data.
 		return codeMap;
 	}
 
+To write out the compressed file there are two main steps remaining.  First, we need to encode some sort of header so that we can recover the data.  Second, we will go through and replace each character in the original message with the Huffman code from our hashmap. To write out the header we will encode the Huffman tree by writing the structure of the Huffman tree:
+
+	private void writeHeader(BinaryWriter output, HuffmanTree<Character> huffTree){
+		if(huffTree.symbol == null){
+			output.write(0);
+			if(huffTree.left != null)  writeHeader(output,huffTree.left);
+			if(huffTree.right != null) writeHeader(output,huffTree.right);
+		}else{
+			output.write(1);
+			Integer symbol = (int) huffTree.symbol.charValue();
+			output.writeByte( Integer.toBinaryString(symbol) );
+		}
+	}
+
+
+Next we simply have to parse through the original text and replace the characters with their associated Huffman code:
+
+	while( (line = reader.readLine()) != null ){
+		for(char codeChar : line.toCharArray()){
+			// Get the code for each character
+			code = codeMap.get(codeChar);
+			// Write bitwise
+			for( char bit : code.toCharArray() ){
+				output.write((int) (bit - 48)); //Scaled for ascii
+			}
+		}
+	}
 
 Huffman Decoding
 ================
