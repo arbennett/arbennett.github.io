@@ -17,45 +17,45 @@ In ASCII each character in a text document is 7-bits long, and in UTF-8 a charac
 The first step to building the Huffman tree is to count the number of times each character occurs in the data set we are trying to compress.  Once we have the characters and their frequencies we will build the tree.  Each of the leaf nodes of the tree will contain one of the characters and the number of times it occurred in the data.  We begin by putting each of these nodes into the priority queue:
 
 {% highlight java linenos %}
-	for(int i = 0; i < charFreqs.length -1 ; i++){
-		if(charFreqs[i] > 0){
-			huffQueue.offer( new HuffmanTree<Character>((char) i, charFreqs[i]) );
-		}
-	}
+  for(int i = 0; i < charFreqs.length -1 ; i++){
+    if(charFreqs[i] > 0){
+      huffQueue.offer( new HuffmanTree<Character>((char) i, charFreqs[i]) );
+    }
+  }
 {% endhighlight %}
 
 Then we can build up our tree by popping two elements off of the queue and combining them into a new Huffman tree, and finally putting that back onto the priority queue.  We do this until the final tree is all that is in the queue:
 
 {% highlight java linenos %}
-	while(huffQueue.size() > 1){
-		leftTree = huffQueue.poll();
-		rightTree = huffQueue.poll();
-		tempTree = new HuffmanTree<Character>(leftTree, rightTree);
-		huffQueue.offer(tempTree);
-	}
+  while(huffQueue.size() > 1){
+    leftTree = huffQueue.poll();
+    rightTree = huffQueue.poll();
+    tempTree = new HuffmanTree<Character>(leftTree, rightTree);
+    huffQueue.offer(tempTree);
+  }
 {% endhighlight %}
 
 Once we have the tree we can begin building the codes used to compress the data.  Building the codes follows a simple algorithm:  starting at the root of the Huffman tree we will traverse until we reach each leaf node.  The path taken to the leaf will determine the code; every left we take is denoted a 0 and every right we take is denoted a 1.  We will store the character and codes as key-value pairs in a hashmap:
 
 {% highlight java linenos %}
-	private HashMap<Character, String> buildMap(HashMap<Character,String> codeMap, HuffmanTree<Character> huffTree, StringBuilder code){
-		if (huffTree.symbol != null){
-			// Put the <Symbol,Code> pair in the map
-			codeMap.put(huffTree.symbol,code.toString());
-		} else {
-			// Traverse left
-			code.append(0);
-			codeMap = buildMap(codeMap, huffTree.left, code);
-			code.deleteCharAt(code.length()-1);
-			
-			// Traverse right
-			code.append(1);
-			codeMap = buildMap(codeMap, huffTree.right, code);
-			code.deleteCharAt(code.length()-1);
-		}
+  private HashMap<Character, String> buildMap(HashMap<Character,String> codeMap, HuffmanTree<Character> huffTree, StringBuilder code){
+    if (huffTree.symbol != null){
+      // Put the <Symbol,Code> pair in the map
+      codeMap.put(huffTree.symbol,code.toString());
+    } else {
+      // Traverse left
+      code.append(0);
+      codeMap = buildMap(codeMap, huffTree.left, code);
+      code.deleteCharAt(code.length()-1);
 		
-		return codeMap;
-	}
+      // Traverse right
+      code.append(1);
+      codeMap = buildMap(codeMap, huffTree.right, code);
+      code.deleteCharAt(code.length()-1);
+    }
+	
+    return codeMap;
+  }  
 {% endhighlight %}
 
 To write out the compressed file there are two main steps remaining.  First, we need to encode some sort of header so that we can recover the data.  Second, we will go through and replace each character in the original message with the Huffman code from our hashmap. To write out the header we will encode the Huffman tree by writing the structure of the Huffman tree:
