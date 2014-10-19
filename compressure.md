@@ -104,7 +104,3 @@ References
 [2] [ASCII Wikipedia Page](http://en.wikipedia.org/wiki/ASCII)
 
 [3] [UTF-8 Wikipedia Page](http://en.wikipedia.org/wiki/UTF-8)
-
-Another header
-==============
-Hopefully this gives me a scrollbar
