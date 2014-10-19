@@ -89,9 +89,56 @@ Next we simply have to parse through the original text and replace the character
 	}
 {% endhighlight %}
 
+Once this is done we just have to write the bits to a file.  Doing this in Java requires some additional work that will be touched on in the Java Implementation section.
+
 Huffman Decoding
 ================
-talk about writing a header and how to rebuild the huffman tree or code mapping
+The act of decoding our compressed file is essentially reversing the last steps of the compression process.  We will begin by reading in the header and reconstructing the Huffman tree.  We will accomplish this by reading the header bit-by-bit; if the bit is a zero we must look further down the header, which means another branch must be added to the Huffman tree.  Once we encounter a one we have found a leaf node and can convert the next 8 bits into an ASCII encoded character.  The code for this operation looks like:
+
+{% highlight java linenos %}
+	private HuffmanTree<Character> buildTree(BinaryReader bitreader){
+		int bit = 0;
+		int symbol;
+		do{  // while (bit != -1 && eof != true)
+			bit = bitreader.read();
+			if(bit == 1){
+				//Found a leaf node
+				symbol = bitreader.readByte();
+				if(symbol > 0){
+					return new HuffmanTree<Character>((char) symbol, 0);
+				}else{
+					eof = true;
+				}
+			}else if (bit == 0){
+				// Look further down the header
+				HuffmanTree<Character> leftTree = buildTree(bitreader);
+				HuffmanTree<Character> rightTree = buildTree(bitreader);
+				return new HuffmanTree<Character>(leftTree,rightTree);
+			}
+		}while(bit!=-1 && eof!=true);
+		return new HuffmanTree<Character>((char) 0,0);
+	}
+{% endhighlight %}
+
+From this we can build the map of characters and codes.  This is accomplished the same way as previously.  Now that we have the mapping of characters to codes we can loop through and decoded the compressed file.  The beauty of the Huffman encoding is the ability to decode so easily.  Thanks to the structure of the Huffman tree no codes are substrings of any other codes, meaning that there is only one way to interpret a stream of codes.  We can decode easily:
+
+{% highlight java linenos %}
+	private String decode(BinaryReader bitreader,HashMap<String, Character> codeMap) {
+		StringBuilder code = new StringBuilder();
+		StringBuilder decoded = new StringBuilder();
+		int bit = bitreader.read();
+		do{
+			code.append(bit);
+			if (codeMap.containsKey(code.toString())){
+				decoded.append(codeMap.get(code.toString()));
+				code.setLength(0);
+			}
+			bit = bitreader.read();
+		}while(bit!=-1);
+		return decoded.toString();
+	}
+{% endhighlight %}
+
 
 Java Implementation
 ===================
