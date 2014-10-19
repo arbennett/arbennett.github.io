@@ -32,7 +32,26 @@ Then we can build up our tree by popping two elements off of the queue and combi
 		huffQueue.offer(tempTree);
 	}
 
-Once we have the tree we can begin building the codes used to compress the data.
+Once we have the tree we can begin building the codes used to compress the data.  Building the codes follows a simple algorithm:  starting at the root of the Huffman tree we will traverse until we reach each leaf node.  The path taken to the leaf will determine the code; every left we take is denoted a 0 and every right we take is denoted a 1.  We will store the character and codes as key-value pairs in a hashmap:
+
+	private HashMap<Character, String> buildMap(HashMap<Character,String> codeMap, HuffmanTree<Character> huffTree, StringBuilder code){
+		if (huffTree.symbol != null){
+			// Put the <Symbol,Code> pair in the map
+			codeMap.put(huffTree.symbol,code.toString());
+		} else {
+			// Traverse left
+			code.append(0);
+			codeMap = buildMap(codeMap, huffTree.left, code);
+			code.deleteCharAt(code.length()-1);
+			
+			// Traverse right
+			code.append(1);
+			codeMap = buildMap(codeMap, huffTree.right, code);
+			code.deleteCharAt(code.length()-1);
+		}
+		
+		return codeMap;
+	}
 
 
 Huffman Decoding
