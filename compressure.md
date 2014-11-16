@@ -142,15 +142,31 @@ From this we can build the map of characters and codes.  This is accomplished th
 
 Java Implementation
 ===================
-needing to write the bitreader/writer since java normally handles things as bytes
+The default method of handling binary files in Java leaves something to be desired for Compressure application; there is no direct method to interact with files in a bit-wise manner.  To account for this we will have to develop our own helper classes to write and read the compressed files.  As seen previously in the code these helper classes are named BinaryReader and BinaryWriter.  These classes work by keeping an internal byte sized buffer that is written to bit-wise by shifting.  For example, the writer's main writeBit method is as follows:
+
+{% highlight java linenos %}
+  theByte = theByte << 1 | bit;
+  currentBit++;
+  if(currentBit == 8){
+    output.write(theByte);
+    currentBit = 0;
+  }
+{% endhighlight %}
+
 
 Analysis
 ========
-show differences between random symbols, regular text, and compare to tar
+So how much compression can we actually obtain from a simple method like this?  To find out I have compared the compression rate of both English text and randomly generated ASCII characters.  For the random tests I generated there were 50 randomly selected characters.  To encode 50 distinct characters using a fixed length encoding you would need to use 6 bits, which would result in a compression rate of 0.75 from the UTF-8 alphabet.  For large text files using the randomly generated texts the Compressure application achieved a compression rate of approximately 0.75, in line with our predictions.  For an English text however, Compressure does actually achieve some notable compression.  For large files a compression rate of approximately 0.6 was achieved.  For small files it can be seen that writing the header actually caused the "compressed" file to become larger.  
+
+![A comparison of compression ratio to original text length for various methods]({{ site.url }}/imgs/compression_comparison.png)
+
+How does this stack up to real compression programs?  Using an input file of approximately 20,000 characters the resulting Huffman compressed file was 10.8 kB while a version of the same file compressed with the GNU tar utility was only 7.6 kB.  Both showed great improvements over the original file size of 19.6 kB, but it is clear that the methods developed here are too simplistic to be useful contenders.  
 
 Conclusion
 ==========
-Say something about adaptive huffman encoding and other improvements like lzq
+Regardless of the usefulness of the methods developed here, it is always beneficial to have at least a basic understanding of the processes that underly technologies that are so commonly used.  The Huffman encoding technique was a major milestone in data compression techniques, and many of the advanced methods that have been developed since the 1950's are based on the original paper.  Adaptive Huffman encoding, which can compress data in real time, reducing the need to complete multiple passes over the original data.  Another popular technique based on Huffman encoding simply encodes groups of characters rather than individual ones.  Both of these methods provides specialized treatments based on the requirements and initial data supplied.  Like all things, data compression requires intelligent decisions to be made to maximize their successes.  
+
+If you would like to play with the Compressure application you can clone the code from https://github.com/arbennett/Compressure.git.
 
 References
 ==========
