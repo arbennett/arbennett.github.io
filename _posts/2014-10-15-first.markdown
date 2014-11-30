@@ -6,4 +6,5 @@ categories: misc
 ---
 Hey look, I made a post.  Hopefully there will be more interesting posts in the near future.  Up next is going to be an addition in the Projects area.  I'm going to write up something on Huffman encoding and my Compressure project.
 
+
 Alright, see you there. 
