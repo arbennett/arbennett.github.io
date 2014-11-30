@@ -2,7 +2,7 @@
 layout: post
 title:  "Screen calibration for the Asus Zenbook on Linux"
 date:   2014-11-29 
-categories: linux
+categories: misc
 ---
 Recently I purchased an Asus Zenbook for travel, and noticed that the screen color was noticeably tinted green/yellow.  This was easy to fix under Windows, which has an easy to use though not feature-packed calibration tool.  However, on Linux I ran into some difficulties getting the screen the way I wanted it.  I do not have a colorimeter, which is required for many of the calibration tools that I could find.  Also, since I do not have a colorimeter it should be noted that I am not doing any professional visual media work on this machine, so the calibration I ended up with is for my eyes only.  My installation of Linux that you can use as reference is Arch Linux with kernel version 3.17, and Gnome 3.14 with xdg for managing the desktop.
 
