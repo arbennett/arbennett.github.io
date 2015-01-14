@@ -95,12 +95,13 @@
  * Site footer
  */
 .site-footer {
+    width: 100%;
     border-top: 1px solid #dddddd;
     border-bottom: 1px solid #dddddd;
     background-color: #f1f1f1;
-    padding: 10px $spacing-unit;
-    width: 100%;
-    height: $spacing-unit;
+    padding: 10px 0;
+    position: absolute;
+    bottom: 0;
 }
 
 .footer-heading {
@@ -217,7 +218,8 @@
 
 .post-content {
 	margin-top: $spacing-unit;
-    margin-bottom: -$spacing-unit;
+    margin-bottom: $spacing-unit;
+    height: 100%;
 
     h2 {
         font-size: 32px;
