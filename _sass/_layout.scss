@@ -99,9 +99,9 @@
     border-bottom: 1px solid #dddddd;
     background-color: #f1f1f1;
     padding: 10px 0;
-    position: relative;
+    position: fixed;
     width: 100%;
-    bottom: auto;
+    bottom: 0px;
 }
 
 .footer-heading {
