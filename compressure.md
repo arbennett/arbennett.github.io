@@ -158,7 +158,7 @@ Analysis
 ========
 So how much compression can we actually obtain from a simple method like this?  To find out I have compared the compression rate of both English text and randomly generated ASCII characters.  For the random tests I generated there were 50 randomly selected characters.  To encode 50 distinct characters using a fixed length encoding you would need to use 6 bits, which would result in a compression rate of 0.75 from the UTF-8 alphabet.  For large text files using the randomly generated texts the Compressure application achieved a compression rate of approximately 0.75, in line with our predictions.  For an English text however, Compressure does actually achieve some notable compression.  For large files a compression rate of approximately 0.6 was achieved.  For small files it can be seen that writing the header actually caused the "compressed" file to become larger.  
 
-[A comparison of compression ratio to original text length for various methods](http://arbennett.github.io/imgs/compression_comparison.png)
+![A comparison of compression ratio to original text length for various methods](http://arbennett.github.io/imgs/compression_comparison.png)
 
 How does this stack up to real compression programs?  Using an input file of approximately 20,000 characters the resulting Huffman compressed file was 10.8 kB while a version of the same file compressed with the GNU tar utility was only 7.6 kB.  Both showed great improvements over the original file size of 19.6 kB, but it is clear that the methods developed here are too simplistic to be useful contenders.  
 
