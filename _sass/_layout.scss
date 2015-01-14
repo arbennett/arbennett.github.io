@@ -101,7 +101,7 @@
     padding: 10px 0;
     position: fixed;
     width: 100%;
-    bottom: 0px;
+    height: $spacing-unit;
 }
 
 .footer-heading {
@@ -218,7 +218,7 @@
 
 .post-content {
 	margin-top: $spacing-unit;
-    margin-bottom: $spacing-unit;
+    margin-bottom: -$spacing-unit;
 
     h2 {
         font-size: 32px;
