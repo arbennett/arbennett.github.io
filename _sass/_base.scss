@@ -158,6 +158,7 @@ pre {
     margin-left: auto;
     padding-right: $spacing-unit;
     padding-left: $spacing-unit;
+    min-height: 100%;
     @extend %clearfix;
 
     @include media-query($on-laptop) {
