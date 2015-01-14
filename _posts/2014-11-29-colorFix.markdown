@@ -10,15 +10,15 @@ The tool I used to calibrate the screen was called [xcalib](http://xcalib.source
 
 Once you have xcalib you will find that it is easy to use, but difficult to master (as with many similar tools).  There are a couple of included color profiles that I used to tune settings.  I made a small script and took the gamma_1.icc profile and put them in /opt/Color. The script that I settled on was 
 
-```
+{% highlight java %}
 #!/bin/bash
 sleep 1
 xcalib -d :0 -s 0 -v -co 80.0 -red 1.0  2.1 92.0 -green 1.0 2.1 89.0 -blue 1.0 2.1 98.0  /opt/Color/gamma_1_0.icc
-```
+{% endhighlight %}
 
 After getting this script set up I put a new entry for xdg.  In /etc/xdg/autostart I made a new entry, color-correction.desktop.  In that file I just have:
 
-```
+{% highlight java %}
 [Desktop Entry]
 Name=ColorCorrection
 GenericName=Corrects the Color to be less yellow
@@ -27,6 +27,6 @@ Exec=/opt/Color/colorCorrection
 Terminal=false
 Type=Application
 X-GNOME-Autostart-enabled=true
-```
+{% endhighlight %}
 
 And that's it!  Now when logging in I see the color change about the same time Gnome is ready to be used.  Thanks to the xcalib developers for making the perfect tool for this situation.
