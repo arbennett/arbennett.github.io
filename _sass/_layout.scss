@@ -98,8 +98,7 @@
     border-top: 1px solid #dddddd;
     border-bottom: 1px solid #dddddd;
     background-color: #f1f1f1;
-    padding: 10px 0;
-    position: fixed;
+    padding: 10px $spacing-unit;
     width: 100%;
     height: $spacing-unit;
 }
