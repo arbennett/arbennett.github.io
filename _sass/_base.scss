@@ -158,8 +158,6 @@ pre {
     margin-left: auto;
     padding-right: $spacing-unit;
     padding-left: $spacing-unit;
-    min-height: 100%;
-    position: relative;
     @extend %clearfix;
 
     @include media-query($on-laptop) {
@@ -170,9 +168,6 @@ pre {
     }
 }
 
-.home {
-	min-height: 100%;
-}
 
 
 /**
