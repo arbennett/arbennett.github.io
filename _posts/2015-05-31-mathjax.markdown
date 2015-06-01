@@ -1,0 +1,17 @@
+---
+layout: post
+title: "Adding LaTeX to a Jekyll blog"
+date: 2015-05-31
+categories: misc
+---
+It's as easy as 
+\\[ \frac{1}{\pi} = \frac{2 \sqrt 2}{9801} \sum_{k=0}^\infty \frac{(4k)!(1103+26390k)}{k!^4(396^{4k})} \\]
+
+Just add the following snippet to your head tag:
+
+{% highlight html %}
+<script src='https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
+{% endhighlight %}
+
+And then type away.
+

@@ -10,4 +10,4 @@ github_username:  arbennett
 email_username:  bennett.andr@gmail.com
 
 # Build settings
-markdown: kramdown
+markdown: rdiscount #kramdown
