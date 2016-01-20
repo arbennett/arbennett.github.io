@@ -47,13 +47,11 @@ Once we have the tree we can begin building the codes used to compress the data.
       code.append(0);
       codeMap = buildMap(codeMap, huffTree.left, code);
       code.deleteCharAt(code.length()-1);
-		
       // Traverse right
       code.append(1);
       codeMap = buildMap(codeMap, huffTree.right, code);
       code.deleteCharAt(code.length()-1);
     }
-	
     return codeMap;
   }  
 {% endhighlight %}
@@ -102,12 +100,12 @@ The act of decoding our compressed file is essentially reversing the last steps 
     do{  // while (bit != -1 && eof != true)
       bit = bitreader.read();
       if(bit == 1){
-	//Found a leaf node
-	symbol = bitreader.readByte();
+	    //Found a leaf node
+	    symbol = bitreader.readByte();
         if(symbol > 0){
-	  return new HuffmanTree<Character>((char) symbol, 0);
+	      return new HuffmanTree<Character>((char) symbol, 0);
         }else{
-	  eof = true;
+	      eof = true;
         }
       }else if (bit == 0){
         // Look further down the header

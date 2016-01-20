@@ -1,6 +1,3 @@
-/**
- * Reset some basic elements
- */
 body, h1, h2, h3, h4, h5, h6,
 p, blockquote, pre, hr,
 dl, dd, ol, ul, figure {
@@ -8,9 +5,6 @@ dl, dd, ol, ul, figure {
     padding: 0;
 }
 
-/**
- * Basic styling
- */
 body {
     font-family: $text-font-family;
     font-size: $base-font-size;
@@ -28,10 +22,6 @@ html {
     min-height: 100%;
 }
 
-
-/**
- * Set `margin-bottom` to maintain vertical rhythm
- */
 h1, h2, h3, h4, h5, h6,
 p, blockquote, pre,
 ul, ol, dl, figure,
@@ -39,21 +29,15 @@ ul, ol, dl, figure,
     margin-bottom: $spacing-unit / 2;
 }
 
+h1, h2, h3, h4, h5, h6 {
+    margin-top: 1.5*$spacing-unit;
+}
 
-
-/**
- * Images
- */
 img {
     max-width: 100%;
     vertical-align: middle;
 }
 
-
-
-/**
- * Figures
- */
 figure > img {
     display: block;
 }
@@ -62,11 +46,6 @@ figcaption {
     font-size: $small-font-size;
 }
 
-
-
-/**
- * Lists
- */
 ul, ol {
     margin-left: $spacing-unit;
 }
@@ -78,39 +57,22 @@ li {
     }
 }
 
-
-
-/**
- * Headings
- */
 h1, h2, h3, h4, h5, h6 {
     font-family: $base-font-family;
     font-weight: 300;
 }
 
-
-
-/**
- * Links
- */
 a {
     color: $brand-color;
     text-decoration: none;
-
     &:visited {
         color: darken($brand-color, 15%);
     }
-
     &:hover {
         color: $text-color;
     }
 }
 
-
-
-/**
- * Blockquotes
- */
 blockquote {
     color: $grey-color;
     border-left: 4px solid $grey-color-light;
@@ -118,45 +80,21 @@ blockquote {
     font-size: 18px;
     letter-spacing: -1px;
     font-style: italic;
-
     > :last-child {
         margin-bottom: 0;
     }
 }
 
-
-
-/**
- * Code formatting
- */
-pre,
-code {
-    font-size: 15px;
+.highlight pre code {
+    font-size: 14px;
     border: 1px solid $grey-color-light;
-    border-radius: 3px;
-    background-color: $background-color;
+    border-radius: 10px;
+    display: block;
+    white-space: pre; 
+    overflow-x: auto; 
+    word-wrap: normal; 
 }
 
-code {
-    padding: 1px 5px;
-}
-
-pre {
-    padding: 8px 12px;
-    overflow-x: scroll;
-
-    > code {
-        border: 0;
-        padding-right: 0;
-        padding-left: 0;
-    }
-}
-
-
-
-/**
- * Wrapper
- */
 .wrapper {
     max-width: -webkit-calc(800px - (#{$spacing-unit} * 2));
     max-width:         calc(800px - (#{$spacing-unit} * 2));
@@ -174,13 +112,7 @@ pre {
     }
 }
 
-
-
-/**
- * Clearfix
- */
 %clearfix {
-
     &:after {
         content: "";
         display: table;
@@ -188,19 +120,12 @@ pre {
     }
 }
 
-
-
-/**
- * Icons
- */
 .icon {
-
     > svg {
         display: inline-block;
         width: 16px;
         height: 16px;
         vertical-align: middle;
-
         path {
             fill: $grey-color;
         }
