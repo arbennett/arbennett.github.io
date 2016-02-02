@@ -49,14 +49,14 @@ $$ u_h = \sum_{i=0}^{N} u_i \phi_i \tag{4} $$
 where {\\( \phi_j \\)} is the set of basis functions spanning \\(V^{n}\\).  Splitting 
 the terms up into non-boundary and boundary terms respectively we see:
 
-$$\sum_{i\notin\partial\Omega}u_i\phi_i+\sum\_{i\in\partial\Omega}g\_i\phi\_i \tag{5}$$ 
+$$\sum_{i\notin\partial\Omega}u_i\phi_i+\sum_{i\in\partial\Omega}g\_i\phi_i \tag{5}$$ 
 
 Subsituting 
 \\((5)\\) into \\((3)\\) and replacing \\( v \text{ with } \phi_j \\) we get:
 
 $$ 
 \sum_{i \notin \partial\Omega} u_i \int \nabla \phi_i \phi_j d\Omega = 
-\int\phi\_j f d\Omega-\sum\_{i\in\partial\Omega}(\int\nabla\phi\_i\phi\_j d\Omega)g\_i 
+\int\phi_j f d\Omega-\sum_{i\in\partial\Omega}(\int\nabla\phi_i\phi_j d\Omega)g_i 
 \tag{5} 
 $$
 
@@ -66,9 +66,17 @@ $$ \hat{A} \vec{x} = \vec{b} $$
 
 where: 
 
-$$ A_{ij} = \int \nabla \phi_i \phi_j d\Omega $$
-$$ x_i = u_i  \tag{6}$$
-$$ b_j = \int f \phi_j d\Omega -\sum\_{i\in\partial\Omega}(\int\nabla\phi\_i\phi\_j d\Omega)g\_i $$  
+$$ 
+A_{ij} = \int \nabla \phi_i \phi_j d\Omega 
+$$
+
+$$ 
+x_i = u_i  
+$$
+
+$$ 
+b_j = \int f \phi_j d\Omega -\sum_{i\in\partial\Omega}(\int\nabla\phi_i\phi_j d\Omega)g_i 
+$$  
 
 Finding the approximate solution then is accomplished by solving for \\(\vec{x}\\).
 
@@ -96,7 +104,6 @@ code can be seen [here](https://github.com/arbennett/Julia-FE/blob/master/src/gm
 Once the GMSH file is read in the relevant information is encapsulated in a 
 `Mesh` datatype:
 
-```    
     type Mesh
         n_nodes::Int64
         n_elements::Int64
@@ -120,14 +127,12 @@ Once the GMSH file is read in the relevant information is encapsulated in a
                     elements
                    )
     end
-```
 
 With the data structure laid out, we now face the issue of how to accurately 
 reflect the geometry of the problem.  This implementation will use linear 
 triangle shaped elements.  This representation makes the shape functions of the 
 reference element extremely simple:
 
-```
     # Quadrature points & weight
     const xi = 1/3
     const eta = 1/3
@@ -147,7 +152,6 @@ reference element extremely simple:
     phi3(xi,eta) = eta
     const dphi3_dxi = 0.0
     const dphi3_deta = 1.0
-```
 
 The combination of the shape function definitions and the mesh datatype allow us 
 to represent the solution.  To actually find the solution we must assemble our 
@@ -164,7 +168,6 @@ process looks like the following:
 
 Gradient calculation:
 
-```    
     # Get element nodes, and their locations
     elem_nodes = mesh.elements[elemIdx,:]
     x1, y1 = mesh.nodes[elem_nodes[1],:]
@@ -194,19 +197,14 @@ Gradient calculation:
     Dphi[2,2] = dphi2_dxi×dxi_dy + dphi2_deta×deta_dy
     Dphi[3,1] = dphi3_dxi×dxi_dx + dphi3_deta×deta_dx
     Dphi[3,2] = dphi3_dxi×dxi_dy + dphi3_deta×deta_dy
-```
 
 \\(\hat{A}\\) calculation:
 
-```
 todo
-```
 
 \\(\vec{b}\\) calculation:
 
-```
 todo
-```
 
 Writing the Solution
 --------------------
