@@ -4,9 +4,6 @@ title: Solving Poisson's Equation with Julia via the finite element method
 permalink: /projects/julia-fe/
 ---
 
-DISCLAIMER: This is a living document.  Check back for more later.
-==================================================================
-
 Background
 ==========
 The finite element method (FEM) is a group of techniques for approximating
