@@ -164,8 +164,20 @@ quantities of interest on the mesh elements first.  For each element in the
 solution we will calculate the gradient on the element, which is used to build 
 local equivalents to \\( \hat{A} \\) and \\( \vec{b} \\).  Then, using the 
 element-wise versions we can iteratively construct the global versions.  The 
-process looks like the following:
+process looks like the following.
 
+Before we get into assembling \\(\hat{A}\\) and \\(\vec{b}\\), some setup:
+
+    size = mesh.n_nodes - length(mesh.boundary_nodes)
+    stiff = zeros(size,size)
+    global_stiff = sparse(temp_stiff)
+    stiff = zeros(3,3)
+    gc() # Throw away the full sized array and keep the sparse one
+    global_load = zeros(size)
+    load = zeros(3)
+
+Then, the following sections are to be in a loop over each element in the mesh.
+ 
 Gradient calculation:
 
     # Get element nodes, and their locations
@@ -198,20 +210,49 @@ Gradient calculation:
     Dphi[3,1] = dphi3_dxi×dxi_dx + dphi3_deta×deta_dx
     Dphi[3,2] = dphi3_dxi×dxi_dy + dphi3_deta×deta_dy
 
+
 \\(\hat{A}\\) calculation:
 
-todo
+    for i=1:3
+        for j=1:3
+            stiff[i,j] = weight * jacobian * (Dphi[i,1]*Dphi[j,1] + Dphi[i,2]*Dphi[j,2])
+        end
+    end
+
+    for i=1:3
+        pos_i = findin(mesh.internal_nodes, elem_nodes[i])
+        if length(pos_i) > 0
+            for j=1:3
+                pos_j = findin(mesh.internal_nodes, elem_nodes[j])
+                if length(pos_j) > 0
+                    global_stiff[pos_i[1], pos_j[1]] += stiff[i,j]
+                end
+            end
+        end
+    end
 
 \\(\vec{b}\\) calculation:
 
-todo
+    for i=1:3
+        load[i] = weight * jacobian * f_ext(x,y) * psi[i]
+    end
 
-Writing the Solution
---------------------
+    for i=1:3
+        pos_i = findin(mesh.internal_nodes, elem_nodes[i])
+        if length(pos_i) > 0
+            global_load[pos_i[1]] += load[i]
+            for j=1:3
+                pos_j = findin(mesh.internal_nodes, elem_nodes[j])
+                if length(pos_j) < 1
+                    global_load[pos_i[1]] -= stiff[i,j] * field[elem_nodes[j]]
+                end
+            end
+        end
+    end
 
-Improvements & Variations
-=========================
+The Solving the Matrix Equation
+-------------------------------
+Now that we've got the load vector and stiffness matrix we can use Julia's built in capabilities:
 
+    U = global_stiff\global_load
 
-References
-==========
