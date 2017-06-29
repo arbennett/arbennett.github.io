@@ -4,12 +4,9 @@ title: About
 permalink: /about/
 ---
 
-I'm a post-baccalaureate researcher working with Oak Ridge National Laboratory.
-My research is at the intersection of software, computational science, and
-climate science.  There are two big projects that I am a part of (ICE and
-LIVVkit), as well as numerous other small projects and excursions.  Check out
-my github page to see what I've been working on. 
+I'm a graduate student in the Compuational Hydrology group in the Department of 
+Civil and Environmental Engineering at the University of Washington.  I'm 
+interested in computational science and humanity's impact on the Earth system.
 
-Outside of science and technology I enjoy hiking, cooking, and most forms of art.  
-You'll probably see a number of posts on these subjects sprinkled throughout the sciency things.  
-I'll try to keep everything tagged nicely so that you can skip parts that you don't like.
+I'm bad at keeping these things current, so the more vague the better.
+If you want to know more, contact me!

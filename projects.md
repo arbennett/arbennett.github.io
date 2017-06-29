@@ -20,5 +20,7 @@ This implementation is written in Julia, using GMSH for meshing, and solves Pois
 I wrote this as practical guide to bridge the gap between concepts and implementation in a clear and 
 accessible manner.
 
-
+<a class="page-link" href="{{ "/projects/greenland_basal_sliding" | prepend: site.baseurl }}">Basal Sliding of the Greenland Ice Sheet</a>
+===========
+Placeholder
 

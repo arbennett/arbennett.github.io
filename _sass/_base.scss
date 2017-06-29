@@ -9,7 +9,7 @@ body {
     font-family: $text-font-family;
     font-size: $base-font-size;
     line-height: $base-line-height;
-    font-weight: 300;
+    font-weight: 150;
     color: $text-color;
     background-color: $background-color;
     -webkit-text-size-adjust: 100%;
@@ -31,6 +31,13 @@ ul, ol, dl, figure,
 
 h1, h2, h3, h4, h5, h6 {
     margin-top: 1.5*$spacing-unit;
+}
+
+.title {
+    font-family: $text-font-family;
+    font-weight: 100;
+    font-size: 2.3em;
+    color: lighten($text-color, 25%);
 }
 
 img {
