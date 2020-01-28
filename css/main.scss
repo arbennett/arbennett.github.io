@@ -2,19 +2,21 @@
 # Only the main Sass file needs front matter (the dashes are enough)
 ---
 @charset "utf-8";
-
+@import url('https://rsms.me/inter/inter.css');
 // Our variables
-$base-font-family: 'Playfair Display', serif;
-$base-font-size:   18px;
-$small-font-size:  $base-font-size * 0.875;
+$meta-font-family: 'Inter', sans-serif;
+$base-font-family: 'EB Garamond', serif;
+//$base-font-family: '', sans-serif;
+$base-font-size:   20px;
+$small-font-size:  $base-font-size * 0.8;
 $base-line-height: 1.5;
 $text-font-family: 'Lato', sans-serif;
-$spacing-unit:     30px;
+$spacing-unit:     0px;
 $text-color:       #333;
 $background-color: #ffffff;
 $brand-color:      #2a7ae2;
 $grey-color:       #888;
-$grey-color-light: lighten($grey-color, 40%);
+$grey-color-light: lighten($grey-color, 30%);
 $grey-color-dark:  darken($grey-color, 40%);
 $on-palm:          600px;
 $on-laptop:        800px;

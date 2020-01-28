@@ -1,14 +1,9 @@
 ---
-layout: default
-title: Sensitivity of the pseudoplastic basal sliding coefficient in CISM
-permalink: /projects/greenland_basal_sliding/
+layout: post
+title: "Sensitivity of the pseudoplastic basal sliding coefficient in CISM"
+date: 2017-06-28
+categories: hydrology, climate
 ---
-
-<h1 class="title">
-SENSITIVITY OF THE PSEUDOPLASTIC BASAL SLIDING COEFFICIENT IN CISM
-</h1>
-
-------------------
 
 Introduction {#sec:org9443d93}
 ============
@@ -17,7 +12,7 @@ Motivation {#sec:org579c565}
 ----------
 
 Sea level rise due to ice sheet contributions remains a major source of
-uncertainty for Earth system models ([Bromwich2010](#bromwich2010)). This 
+uncertainty for Earth system models ([Bromwich2010](#bromwich2010)). This
 uncertainty
 stems from several factors, including incomplete process knowledge,
 inability to resolve heterogeneity in measurements, poor understanding
@@ -32,7 +27,7 @@ The remainder of losses to the dynamical behavior of ice sheets, which
 includes processes such as surging, calving, and sliding.
 
 Basal processes account for several of the most significant contributors
-to the dynamic behavior of ice sheets ([Cuffey, 2010](#cuffey2010), 
+to the dynamic behavior of ice sheets ([Cuffey, 2010](#cuffey2010),
 [Moon, 2012](#moon2012)). In
 the last several decades two major loss events were shown to have
 contibutions from dynamical processes contributing more than 50% of the
@@ -43,7 +38,7 @@ Basal Slip {#sec:org12c80bc}
 
 The terminology used to describe glacial motion at the ice/land
 interface has the tendency to be unclear. We adopt the terminology
-“basal slip” from [Cuffey, 2010](#cuffey2010) to refer to all processes which 
+“basal slip” from [Cuffey, 2010](#cuffey2010) to refer to all processes which
 involve
 motion due to both sliding and deformation at this interface. This
 relationship between the bottom of ice sheets and the subsurface has
@@ -76,7 +71,7 @@ relationships. We will refer to them as sliding relationships.
 
 It has been shown that a pseudoplastic formulation of the sliding
 relationship is able to accurately reproduce the observed surface
-velocities of the Greenland ice sheet ([Aschwanden, 2016](#aschwanden2016)). 
+velocities of the Greenland ice sheet ([Aschwanden, 2016](#aschwanden2016)).
 Plasticity of
 sliding relationships describes the ability for the glacial bed to
 deform. The form of the sliding relationship used is given as
@@ -97,7 +92,7 @@ a minor point update release at the time of writing. The primary
 difference, for the sake of this analysis, is the addition of the
 pseudoplastic sliding law discussed previously. Model runs were
 conducted at a 4km resolution using the input datasets described in
-[Joughin, 2010](#joughin2010) and [Bamber, 2013](#bamber2013). The surface mass 
+[Joughin, 2010](#joughin2010) and [Bamber, 2013](#bamber2013). The surface mass
 balance from the
 input dataset was augmented to set the surface mass balance of currently
 ice-free grid cells to -2mm/year. The reasons for this are twofold.
@@ -117,9 +112,9 @@ reiterated) that runs for the $$q=0.35$$ setup had convergence issues.
 Motivation for inclusion of their results will be provided.
 
 Input data consisted of topographic information derived from a synthesis
-of remote sensing data products ([Bamber 2013](#bamber2013)). The validation 
+of remote sensing data products ([Bamber 2013](#bamber2013)). The validation
 aspect
-of the dataset was also based on remote sensing data 
+of the dataset was also based on remote sensing data
 ([Joughin, 2010](#joughin2010)).
 The majority of options and parameters were the same as those specified
 in the the InitMIP experiments.
@@ -138,11 +133,14 @@ include in the following analyses. It should be noted that if future
 studies are performed this anomaly would be fixed before any analysis,
 but because of time constaints this was impractical.
 
-![](../../imgs/variable_dists.png)
-_**FIGURE 1:** Distributions of several output variables of
-interest for each run. These distributions were calculated by taking the
-mean of all of the time slices from the extension
-runs._
+<figure markdown='1'>
+  ![](../../../../../../imgs/variable_dists.png)
+  <figcaption>
+  Figure 1: Distributions of several output variables of
+  interest for each run. These distributions were calculated by taking the
+  mean of all of the time slices from the extension runs.
+  </figcaption>
+</figure>
 
 To determine whether the $$q=0.35$$ extension run was valid we looked at
 the distributions of output variables for each of the runs was examined.
@@ -165,11 +163,15 @@ slope is far from zero, and the $$r^2$$ value is close to one. Areas where
 the $$r^2$$ value is not close to 1 do not tell us anything about the
 effects of varying $$q$$ on that particular measure.
 
-![](../../imgs/thickness_regression.png)
-_**FIGURE 2:** Linear regression of thickness with respect to
-parameter $$q$$._
+<figure markdown='1'>
+  ![](../../../../../../imgs/thickness_regression.png)
+  <figcaption>
+  Figure 2: Linear regression of thickness with respect to
+  parameter q.
+  </figcaption>
+</figure>
 
-From 2 we can see that the northeastern interior sees a
+From figure 2 we can see that the northeastern interior sees a
 strong decrease in in the thickness as $$q$$ increases. We also see a
 large increase in the thickness of the northeastern coastal region,
 which may be accounting for some of the losses inland. Other areas of
@@ -178,9 +180,13 @@ these locations show increases in thickness as $$q$$ increases. We
 hypothesize that this is due to more flow from inland, where the
 thickness generally decreases slightly.
 
-![](../../imgs/velocity_regression.png)
-_**FIGURE 3:** Linear regression of surface velocity with respect
-to parameter $$q$$._
+<figure markdown='1'>
+  ![](../../../../../../imgs/velocity_regression.png)
+  <figcaption>
+  Figure 3: Linear regression of surface velocity with respect
+  to parameter q.
+  </figcaption>
+</figure>
 
 Figure 3 shows much more localized behaviors. Again, we
 see a strong effect on the northeastern section, with generally high
@@ -198,9 +204,13 @@ would be needed, or output would have to be written more often.
 Comparison to observed surface velocities {#sec:org6f0bb32}
 -----------------------------------------
 
-![](../../imgs/vel_obs_diff.png)
-_**FIGURE 4:** Difference of observed velocity from mean simulation
-values._
+<figure markdown='1'>
+  ![](../../../../../../imgs/vel_obs_diff.png)
+  <figcaption>
+  Figure 4: Difference of observed velocity from mean simulation
+  values.
+  </figcaption>
+</figure>
 
 Figure 4 shows the difference in velocity for each of
 the runs conducted. Several key features stick out. First, the west
@@ -212,9 +222,12 @@ the interior of the eastern and northern sections of the ice sheet
 marginally better than lower values. This observation is in line with
 [Aschwanden, 2016](#aschwanden2016).
 
-![](../../imgs/thk_obs_diff.png)
-_**FIGURE 5:** Difference of observed thickness from mean simulation
-values._
+<figure markdown='1'>
+  ![](../../../../../../imgs/thk_obs_diff.png)
+  <figcaption>
+  Figure 5: Difference of observed thickness from mean simulation values.
+  </figcaption>
+</figure>
 
 Figure 5 shows the differences in thickness. We see
 some general features that are common across all of the runs, namely the
@@ -233,7 +246,7 @@ Sampling more parameter space {#sec:orgac65b1f}
 -----------------------------
 
 We have analyzed 7 runs varying a single parameter, leaving a large
-amount of the parameter space untested. [Aschwanden, 2016](#aschwanden2016) 
+amount of the parameter space untested. [Aschwanden, 2016](#aschwanden2016)
 performed 15
 experiments while varying 2 parameters ($$n$$, and $$q$$). They found that
 the combination of $$q=0.6$$ and $$n=3.25$$ to provide the best fit with
@@ -250,7 +263,7 @@ Isbræ, despite having an outlet width of roughly 10km, requires
 resolutions of 2km or less to accurately resolve the topography through
 which it flows. This dependence on resolution was found to be a large
 driver in the ability of simulations to reproduce observed flows
-([Aschwanden, 2016](#aschwanden2016)). We suspect that this is one of the major 
+([Aschwanden, 2016](#aschwanden2016)). We suspect that this is one of the major
 factors in
 the errrors seen along the west and southeastern coast for all of the
 parameter values.
@@ -302,41 +315,41 @@ References
 ==========
 
 <a name="aschwanden2016"></a>
-Aschwanden, A., Fahnestock, M. A., and Truffer, M.  (2016). Complex greenland 
+Aschwanden, A., Fahnestock, M. A., and Truffer, M.  (2016). Complex greenland
 outlet glacier flow captured. Nature Communications, 7:10524 EP –.  Article.
 
 <a name="bamber2013"></a>
-Bamber, J. L., Griggs, J. A., Hurkmans, R. T. W. L., Dowdeswell, J. A., 
-Gogineni, S. P., Howat, I., Mouginot, J., Paden, J., Palmer, S., Rignot, E., and 
-Steinhage, D.  (2013). A new bed elevation dataset for greenland. The 
+Bamber, J. L., Griggs, J. A., Hurkmans, R. T. W. L., Dowdeswell, J. A.,
+Gogineni, S. P., Howat, I., Mouginot, J., Paden, J., Palmer, S., Rignot, E., and
+Steinhage, D.  (2013). A new bed elevation dataset for greenland. The
 Cryosphere, 7(2):499–510.
 
 <a name="bromwich2010"></a>
-Bromwich, D. H. and Nicolas, J. P. (2010).  Sea-level rise: Ice-sheet 
+Bromwich, D. H. and Nicolas, J. P. (2010).  Sea-level rise: Ice-sheet
 uncertainty. Nature Geosci, 3(9):596–597.
 
 <a name="cuffey2010"></a>
-Cuffey, K. and Paterson, W. (2010). The physics of glaciers. Academic Press. 
+Cuffey, K. and Paterson, W. (2010). The physics of glaciers. Academic Press.
 glacier depth average velocity.
 
 <a name="fyke2014"></a>
-Fyke, J. G., Sacks, W. J., and Lipscomb, W. H. (2014). A technique for gener- 
-ating consistent ice sheet initial conditions for coupled ice sheet/climate 
+Fyke, J. G., Sacks, W. J., and Lipscomb, W. H. (2014). A technique for gener-
+ating consistent ice sheet initial conditions for coupled ice sheet/climate
 models. Geoscientific Model Development, 7(3):1183–1195.
 
 <a name="joughin2010"></a>
-Joughin, I., Smith, B. E., Howat, I. M., Scambos, T., and Moon, T.  (2010). 
-Greenland flow variability from ice-sheet-wide velocity mapping. Journal of 
+Joughin, I., Smith, B. E., Howat, I. M., Scambos, T., and Moon, T.  (2010).
+Greenland flow variability from ice-sheet-wide velocity mapping. Journal of
 Glaciol- ogy, 56(197):415–430.
 
 <a name="kjaer2012"></a>
-Kjær, K. H., Khan, S. A., Korsgaard, N. J., Wahr, J., Bamber, J. L., Hurkmans, 
-R., van den Broeke, M., Timm, L. H., Kjeldsen, K. K., Bjørk, A. A., Larsen, N.  
-K., Jørgensen, L. T., Færch-Jensen, A., and Willerslev, E. (2012). Aerial 
-photographs reveal late–20th-century dynamic ice loss in northwestern greenland. 
-Science, 337(6094):569–573.  
+Kjær, K. H., Khan, S. A., Korsgaard, N. J., Wahr, J., Bamber, J. L., Hurkmans,
+R., van den Broeke, M., Timm, L. H., Kjeldsen, K. K., Bjørk, A. A., Larsen, N.
+K., Jørgensen, L. T., Færch-Jensen, A., and Willerslev, E. (2012). Aerial
+photographs reveal late–20th-century dynamic ice loss in northwestern greenland.
+Science, 337(6094):569–573.
 
 <a name="moon2012"></a>
-Moon, T., Joughin, I., Smith, B., and Howat, I. (2012).  21st-century evolution 
+Moon, T., Joughin, I., Smith, B., and Howat, I. (2012).  21st-century evolution
 of greenland outlet glacier velocities. Science, 336(6081):576–578.
 

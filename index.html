@@ -1,16 +1,17 @@
 ---
-layout: default
+layout: home
 ---
 
 <div class="post">
-  <br>
+  <p class='post-title'>Posts:</p>
   <ul class="post-list">
     {% for post in site.posts %}
       <li>
-        <span class="post-meta">{{ post.date | date: "%b %-d, %Y" }}  
-          <svg height="16" width="24">
-            <circle cx="10.5" cy="10" r="3" stroke="#828282" stroke-width="0" fill="#828282" />
-          </svg> 
+        <span class="post-meta">{{ post.date | date: "%b %-d, %Y" }}
+          <svg height="16" width="24" margin-left="auto" margin-right="auto">
+            <circle cx="10.5" cy="10" r="3" stroke="#828282" stroke-width="0" fill="#828282"  margin-left="auto"
+            margin-rigth="auto"/>
+          </svg>
           <a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
         </span>
       </li>

@@ -1,4 +1,0 @@
-# Fixing firefox's funky text on arch 
-# sudo ln -s /etc/fonts/conf.avail/70-no-bitmaps.conf /etc/fonts/conf.d/
-#
-
