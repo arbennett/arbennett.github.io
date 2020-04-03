@@ -188,4 +188,3 @@ Columns 2-13 of figure 1 show this where the runtime of the parallel version of 
 Despite all the rather nice results for a simple and contrived test case I must lament that actually changing the code of more complex models to maximize this performance can be a trying task.
 When writing numerical code the IO performance is something that's often not considered as a first order determining factor for overall performance, and in many cases that is a fair assumption.
 But, when that assumption breaks down it often does so in a pernicious way and is not easily fixed by simple (or even savvy) users of the code.
-My main recommendation is this: if you find yourself writing a large scale computational model, please make your data structures simple and your IO sufficently de-coupled from the driver code so that each of these strategies can be implemented by a graduate student in a matter of days, not weeks.
