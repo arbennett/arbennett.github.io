@@ -38,6 +38,14 @@ of your data. This post is about connecting your storage to Google's compute in
 a way that scales pretty well for smaller (~10s of GB of data)
 but not "small" projects.
 
+## A minor warning
+
+The example I'm going to give here considers drought prediction. I'm glossing
+over
+**a ton** in this space, and you best not try to use ML to predict extremes
+without *much* more careful thought on both your input data, data selection
+strategy, training approach, and model architecture (include
+confidence/uncertainty bounds please!).
 
 ## The conceptual diagram
 
@@ -112,7 +120,32 @@ span from $$W^4$$-$$W^0$$ (for wet-period--4 through 0), $$N$$ (for neutral), an
 $$D^0-D^4$$ (for drought-period-0 through 4) which have been encoded into 11
 categories in our `reference.nc` dataset(s).
 
-If we *assume* (and this is a big assumption) that we can map the modeled quantiles of soil moisture (SM) and snow water equivalent (SWE) to these categories in some fashion we would like to transform these modeled outputs to data that is amenable to learning such a mapping. Like most machine learning this requires transforming data to be closer to normal and roughly on a scale of $$\pm 1$$.
+If we *assume* (and this is a big assumption) that we can map the modeled
+quantiles of soil moisture (SM) and snow water equivalent (SWE) to these
+categories in some fashion we would like to transform these modeled outputs to
+data that is amenable to learning such a mapping. Like most machine learning
+this requires transforming data to be closer to normal and roughly on a scale
+of $$\pm 1$$
+
+In psuedo-code, this looks like:
+
+{% highlight python %}
+    quantiles_of = xr.Dataset()
+    var_list = ['soil_moisture', 'snow_water_equivalent']
+    for var in var_list:
+        quantiles_of[var] = quantiles(var)  # code excluded for brevity
+{% endhighlight %}
+
+Given our initial simulation data we might get some data which has quantiles
+with dimensions `(time, lat, lon)` or some similar arangement. From this let's
+assume we want our ML model to see some maximum time period for each grid cell
+(that is, time dependence but no spatial dependence). This is another very
+strong assumption, but considerably simplifies this post. In doing this we need
+to generate samples which have dimensions `(time_lookback, number_features)`
+where `time_lookback` is a hyperparameter and `number_features` is 2 wheare
+feature 0 is `soil moisture` and feature 1 is `snow_water_equivalent1`.
+
+
 
 ## Step 2: The network interface (Here, fsspec)
 
