@@ -5,9 +5,7 @@ date:   2021-08-18
 categories: Software, Machine-learning
 ---
 
-### Hey y'all: This is going to be a living document for the time being - I'm
-publishing this as I write, and so this won't be considered "finished" until I
-take this warning away
+### Hey y'all: This is going to be a living document for the time being - I'm publishing this as I write, and so this won't be considered "finished" until I take this warning away
 
 It's pretty indisputable that machine learning is both trendy and effective in
 a number of Earth & environmental
@@ -83,4 +81,46 @@ strategy is iterated to optimize the best model, given the training data
 provided by the data loader. The output of this workflow is the trained model
 which then can be used in forward mode for whatever purpose it was designed
 for.
+
+## Step 1: The storage side (Here, zarr)
+
+For all of the dataset manipulations I'll assume use of `xarray`, since it's
+mostly become the standard way to access Eath science data for computationally
+intensive studies. Assuming we have a number of datasets we load them up like so
+
+{% highlight python %}
+    import xarray as xr
+    mod_ds = xr.open_dataset('/path/to/model_output.nc')
+    ref_ds = xr.open_dataset('/path/to/reference.nc')
+{% endhighlight %}
+
+Now suppose we want to run a classification task where we have "reference
+categories"
+such as those derived by the [US drought
+monitor](https://droughtmonitor.unl.edu/)
+that we want to train our ML model to predict. Given those have previously been
+[one hot
+encoded](https://machinelearningmastery.com/how-to-one-hot-encode-sequence-data-in-python/)
+we similarly need a strategy to map our data from `model_output.nc` to such
+encodings. We may also need to trim these modeled outputs to where we have
+target/observed/truth data. These steps are what I will call the "Extract,
+merge, transform" steps, which map well to the first two steps of the standard
+extract, transform, load (ETL) workflow pattern.
+
+For the sake of the post, let's assume we have gridded drought indicators which
+span from $W^4-W^0$ (for wet-period--4 through 0), $N$ (for neutral), and
+$D^0-D^4$ (for drought-period-0 through 4) which have been encoded into 11
+categories in our `reference.nc` dataset(s).
+
+## Step 2: The network interface (Here, fsspec)
+
+Coming soon!
+
+## Step 3: The compute service (Here, Google colab)
+
+You guessed it - coming soon!
+
+## Understanding performance, avoiding pitfalls
+
+Gonna have to think on this before completion!
 
