@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Connecting Google Colab compute instances to your data
+title:  "Connecting Google Colab compute instances to your data"
 date:   2021-08-18
 categories: Software, Machine-learning
 ---
