@@ -68,7 +68,7 @@ designed for such a workflow. The need for network access should be obvious
 here, given that the network is the mediator between the storage machine and
 compute service, but the need for "chunking" may not. To get a sense of how
 chunking can affect data latency, you can look back at my previous [post on
-chunking NetCDF data.] Though similar, in that post I was interested in
+chunking NetCDF data](https://arbennett.github.io/numerical-methods,/software/2020/02/25/netcdf_write_performance.html). Though similar, in that post I was interested in
 optimizing writing output, while in this one I am more interested in reading
 input. In both cases, having a good chunking strategy is key, and further the
 chunking strategy we use here will be crucial to how we do mini-batch training
@@ -108,9 +108,11 @@ merge, transform" steps, which map well to the first two steps of the standard
 extract, transform, load (ETL) workflow pattern.
 
 For the sake of the post, let's assume we have gridded drought indicators which
-span from $W^4-W^0$ (for wet-period--4 through 0), $N$ (for neutral), and
-$D^0-D^4$ (for drought-period-0 through 4) which have been encoded into 11
+span from $$W^4$$-$$W^0$$ (for wet-period--4 through 0), $$N$$ (for neutral), and
+$$D^0-D^4$$ (for drought-period-0 through 4) which have been encoded into 11
 categories in our `reference.nc` dataset(s).
+
+If we *assume* (and this is a big assumption) that we can map the modeled quantiles of soil moisture (SM) and snow water equivalent (SWE) to these categories in some fashion we would like to transform these modeled outputs to data that is amenable to learning such a mapping. Like most machine learning this requires transforming data to be closer to normal and roughly on a scale of $$\pm 1$$.
 
 ## Step 2: The network interface (Here, fsspec)
 
