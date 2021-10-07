@@ -179,10 +179,21 @@ Now, the only thing of note here is that `OUTPUT_PATH` should be readable over
 the network (aka this directory should be served up over something like HTTP or
 FTP). This will be considered in the following section...
 
-
 ## Step 2: The network interface (Here, fsspec)
 
-Coming soon!
+...hello again! So now we enter the middle part of figure 1, where we need to
+be able to transfer the data from the storage system to the compute system in
+an automated, and robust way. To do so we'll leverage the excellent [`fsspec`
+library](https://filesystem-spec.readthedocs.io/en/latest/). There actually isn't
+anything to do here, except make sure that your data is accessible via the web
+and that you can install `fsspec` on the compute server. I suppose it's worth
+pointing out here that you probably want to host your data on a fast network. As
+this post is targeted at folks who work at Universities or similar institutions,
+you probably want to host this on their networks since they'll most likely be
+much faster than your own home network.  There are tons of resources out there
+on this topic that are going to be much better than anything that I could write
+up so I'll leave this one up to you! With that laid out, let's move on to how
+you actually acccess this data on the other side.
 
 ## Step 3: The compute service (Here, Google colab)
 
