@@ -44,8 +44,7 @@ The example I'm going to give here considers drought prediction. I'm glossing
 over
 **a ton** in this space, and you best not try to use ML to predict extremes
 without *much* more careful thought on both your input data, data selection
-strategy, training approach, and model architecture (include
-confidence/uncertainty bounds please!).
+strategy, training approach, and model architecture.
 
 ## The conceptual diagram
 
@@ -125,7 +124,9 @@ quantiles of soil moisture (SM) and snow water equivalent (SWE) to these
 categories in some fashion we would like to transform these modeled outputs to
 data that is amenable to learning such a mapping. Like most machine learning
 this requires transforming data to be closer to normal and roughly on a scale
-of $$\pm 1$$
+of $$\pm 1$$. Luckily for us quantiles are inherently in the range of 0-1,
+though probably in a very skewed distribution. Glossing over the skewedness
+(which you most certainly do need to deal with in real life)...
 
 In psuedo-code, this looks like:
 
@@ -143,8 +144,40 @@ assume we want our ML model to see some maximum time period for each grid cell
 strong assumption, but considerably simplifies this post. In doing this we need
 to generate samples which have dimensions `(time_lookback, number_features)`
 where `time_lookback` is a hyperparameter and `number_features` is 2 wheare
-feature 0 is `soil moisture` and feature 1 is `snow_water_equivalent1`.
+feature 0 is `soil moisture` and feature 1 is `snow_water_equivalent`.
 
+To accomplish this you might imagine more pseudo-code:
+
+{% highlight python %}
+    samples_list = []
+    space_list = ['lat', 'lon']
+    z_ds = quantiles_of.stack(z=space_list)
+    for i in range(z_ds['z']):
+        samples_list.append(make_lookback(z_ds.isel(z=i), time_lookback=180))
+    lookback_ds = xr.concat(samples_list, dim='samples')
+{% endhighlight %}
+
+This gives a new dataset with dimensions `(samples, time_lookback, features)`,
+which is compatible with something like the [Keras LSTM
+layer](https://keras.io/api/layers/recurrent_layers/lstm/) or [PyTorch LSTM
+layer](https://pytorch.org/docs/stable/generated/torch.nn.LSTM.html) (provided
+`batch_first` is set to `True`). With this, it's time to set up chunking along
+the `sample` dimension to exceed what we will use as the batch size on the compute
+side. Knowing what to set this as depends a bit on the size of lookback and the
+number of features, as well as the available memory on the compute side, but
+generally you want this to be as large as possible to fit in memory on the other
+side. Here I'll just assume a chunk size of 10,000 for no particular reason. Then
+we'll save out the dateset to a [zarr store](https://zarr.readthedocs.io/en/stable/).
+This is easily accomplished just by doing:
+
+{% highlight python %}
+    lookback_ds = lookback_ds.chunk({'samples': 10000})
+    lookback_ds.to_zarr(OUTPUT_PATH, consolidated=True)
+{% endhighlight %}
+
+Now, the only thing of note here is that `OUTPUT_PATH` should be readable over
+the network (aka this directory should be served up over something like HTTP or
+FTP). This will be considered in the following section...
 
 
 ## Step 2: The network interface (Here, fsspec)
