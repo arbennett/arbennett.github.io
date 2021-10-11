@@ -229,7 +229,7 @@ be important to be able to install custom packages so we can access our data
 over the network. To do so, in a new notebook you can simply use `pip`. This
 will get you everything that you need to use the code in this post:
 
-{% highlight %}
+{% highlight python %}
     !pip install fsspec aiohttp requests h5netcdf netcdf4 xarray zarr ipytree
     --quiet
 {% endhighlight %}
@@ -255,7 +255,7 @@ own link no problem.
 
 And you should be met wtih the `repr` of the resulting `ds` to see:
 
-<figure markdown='1'>
+<figure markdown='2'>
   ![](../../../../../../imgs/async_ml_training_repr_ds_example.png)
   <figcaption>
   Figure 2: The web representation of the newly loaded
@@ -263,7 +263,7 @@ And you should be met wtih the `repr` of the resulting `ds` to see:
   </figcaption>
 </figure>
 
-Let's take a moment to revel in how cool this actually is. You've just opened
+Let's take a moment to reflect on how cool this actually is. You've just opened
 up a very large dataset stored on one machine over the network to another
 machine in a very small number of lines of code, and you retain the labels and
 metadata of your data. So now the question about how to reasonably access this
