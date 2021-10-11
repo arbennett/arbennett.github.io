@@ -255,7 +255,7 @@ own link no problem.
 
 And you should be met wtih the `repr` of the resulting `ds` to see:
 
-<figure markdown='2'>
+<figure markdown='1'>
   ![](../../../../../../imgs/async_ml_training_repr_ds_example.png)
   <figcaption>
   Figure 2: The web representation of the newly loaded
