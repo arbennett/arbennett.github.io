@@ -269,6 +269,10 @@ machine in a very small number of lines of code, and you retain the labels and
 metadata of your data. So now the question about how to reasonably access this
 data over the network.
 
+As xarray loads data lazily, now we need to figure out how to get the data across
+the network in an efficient an automated manner. To do this we'll implment a pytorch
+data loader.
+
 ### Coming soon!
 
 ## Understanding performance, avoiding pitfalls
