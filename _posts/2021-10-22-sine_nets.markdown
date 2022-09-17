@@ -187,15 +187,15 @@ essentially learned the right function here.
 
 
 ```python
-y_pred = []
-for x in x_truth:
-    y_pred.append(model(torch.tensor([x/np.pi], dtype=dtype).flatten()).detach().numpy())
+        y_pred = []
+        for x in x_truth:
+            y_pred.append(model(torch.tensor([x/np.pi], dtype=dtype).flatten()).detach().numpy())
 
-plt.plot(x_truth, y_truth, linewidth=2, color='black', label='sin(x)')
-plt.scatter(x_train, y_train, color='grey', marker='.', alpha=0.6, s=200, label='training data')
-plt.plot(x_truth, np.hstack(y_pred), linewidth=3, color='crimson', linestyle='--', label='Prediction')
-plt.ylim([-2,2])
-plt.legend(bbox_to_anchor=(1.04,1), loc="upper left")
+        plt.plot(x_truth, y_truth, linewidth=2, color='black', label='sin(x)')
+        plt.scatter(x_train, y_train, color='grey', marker='.', alpha=0.6, s=200, label='training data')
+        plt.plot(x_truth, np.hstack(y_pred), linewidth=3, color='crimson', linestyle='--', label='Prediction')
+        plt.ylim([-2,2])
+        plt.legend(bbox_to_anchor=(1.04,1), loc="upper left")
 ```
 
 
@@ -215,53 +215,53 @@ Again we get that really nice prediction out of range.
 
 
 ```python
-y_truth = (np.sin(x_truth / 2) + np.sin(x_truth ))/2
+        y_truth = (np.sin(x_truth / 2) + np.sin(x_truth ))/2
 
-dtype = torch.float32
-dx = 0.1
-x_train = torch.hstack([
-    torch.tensor(np.pi * np.arange(-4.0, -1.0, step=dx), dtype=dtype),
-    torch.tensor(np.pi * np.arange(1.0, 4.0, step=dx), dtype=dtype),
-])
-x_valid = torch.tensor(np.pi * np.arange(-1, 1, step=dx), dtype=dtype)
-y_train = (torch.sin(x_train / 2) + torch.sin(x_train ))/2
-y_valid = (torch.sin(x_valid / 2) + torch.sin(x_valid ))/2
+        dtype = torch.float32
+        dx = 0.1
+        x_train = torch.hstack([
+            torch.tensor(np.pi * np.arange(-4.0, -1.0, step=dx), dtype=dtype),
+            torch.tensor(np.pi * np.arange(1.0, 4.0, step=dx), dtype=dtype),
+        ])
+        x_valid = torch.tensor(np.pi * np.arange(-1, 1, step=dx), dtype=dtype)
+        y_train = (torch.sin(x_train / 2) + torch.sin(x_train ))/2
+        y_valid = (torch.sin(x_valid / 2) + torch.sin(x_valid ))/2
 
-plt.plot(x_truth, y_truth, color='black', label='sinx(x)')
-plt.scatter(x_train, y_train, color='crimson', marker='o', label='training data')
-plt.scatter(x_valid, y_valid, color='goldenrod', marker='o', label='validation data')
-plt.legend(loc='lower left')
+        plt.plot(x_truth, y_truth, color='black', label='sinx(x)')
+        plt.scatter(x_train, y_train, color='crimson', marker='o', label='training data')
+        plt.scatter(x_valid, y_valid, color='goldenrod', marker='o', label='validation data')
+        plt.legend(loc='lower left')
 ```
 
 
 ```python
-width = 2
-model = SineNet(width)
-#loss_fun = sobolov_loss#torch.nn.MSELoss()
-loss_fun = torch.nn.MSELoss()
-opt = torch.optim.Adam(model.parameters(), lr=0.01)
+        width = 2
+        model = SineNet(width)
+        #loss_fun = sobolov_loss#torch.nn.MSELoss()
+        loss_fun = torch.nn.MSELoss()
+        opt = torch.optim.Adam(model.parameters(), lr=0.01)
 
-train_loss_history = []
-valid_loss_history = []
+        train_loss_history = []
+        valid_loss_history = []
 
-max_epochs = 30
-for i in tqdm(range(max_epochs)):
-    train_loss, valid_loss = epoch(
-        x_train,
-        y_train,
-        model,
-        loss_fun,
-        opt=opt,
-        X_valid=x_valid,
-        y_valid=y_valid
-    )
-    train_loss_history.append(train_loss)
-    valid_loss_history.append(valid_loss)
+        max_epochs = 30
+        for i in tqdm(range(max_epochs)):
+            train_loss, valid_loss = epoch(
+                x_train,
+                y_train,
+                model,
+                loss_fun,
+                opt=opt,
+                X_valid=x_valid,
+                y_valid=y_valid
+            )
+            train_loss_history.append(train_loss)
+            valid_loss_history.append(valid_loss)
 
-plt.semilogy(train_loss_history)
-plt.semilogy(valid_loss_history)
-plt.xlabel('Epoch #')
-plt.ylabel('MSE Loss')
+        plt.semilogy(train_loss_history)
+        plt.semilogy(valid_loss_history)
+        plt.xlabel('Epoch #')
+        plt.ylabel('MSE Loss')
 ```
 
 
@@ -269,15 +269,15 @@ plt.ylabel('MSE Loss')
 
 
 ```python
-y_pred = []
-for x in x_truth:
-    y_pred.append(model(torch.tensor([x/np.pi], dtype=dtype).flatten()).detach().numpy())
+        y_pred = []
+        for x in x_truth:
+            y_pred.append(model(torch.tensor([x/np.pi], dtype=dtype).flatten()).detach().numpy())
 
-plt.plot(x_truth, y_truth, linewidth=2, color='black', label='sin(x)')
-plt.scatter(x_train, y_train, color='grey', marker='.', alpha=0.6, s=200, label='training data')
-plt.plot(x_truth, np.hstack(y_pred), linewidth=3, color='crimson', linestyle='--', label='Prediction')
-plt.ylim([-2,2])
-plt.legend(bbox_to_anchor=(1.04,1), loc="upper left")
+        plt.plot(x_truth, y_truth, linewidth=2, color='black', label='sin(x)')
+        plt.scatter(x_train, y_train, color='grey', marker='.', alpha=0.6, s=200, label='training data')
+        plt.plot(x_truth, np.hstack(y_pred), linewidth=3, color='crimson', linestyle='--', label='Prediction')
+        plt.ylim([-2,2])
+        plt.legend(bbox_to_anchor=(1.04,1), loc="upper left")
 ```
 
 
@@ -297,24 +297,24 @@ great.
 
 
 ```python
-coefs = 2 * np.random.random(8)
+        coefs = 2 * np.random.random(8)
 
-y_truth = np.mean(np.array([np.sin(c * x_truth) for c in coefs]), axis=0)
+        y_truth = np.mean(np.array([np.sin(c * x_truth) for c in coefs]), axis=0)
 
-dtype = torch.float32
-dx = 0.1
-x_train = torch.hstack([
-    torch.tensor(np.pi * np.arange(-4.0, -1.0, step=dx), dtype=dtype),
-    torch.tensor(np.pi * np.arange(1.0, 4.0, step=dx), dtype=dtype),
-])
-x_valid = torch.tensor(np.pi * np.arange(-1, 1, step=dx), dtype=dtype)
-y_train = torch.tensor(np.mean(np.array([np.sin(c * x_train.numpy()) for c in coefs]), axis=0))
-y_valid = torch.tensor(np.mean(np.array([np.sin(c * x_valid.numpy()) for c in coefs]), axis=0))
+        dtype = torch.float32
+        dx = 0.1
+        x_train = torch.hstack([
+            torch.tensor(np.pi * np.arange(-4.0, -1.0, step=dx), dtype=dtype),
+            torch.tensor(np.pi * np.arange(1.0, 4.0, step=dx), dtype=dtype),
+        ])
+        x_valid = torch.tensor(np.pi * np.arange(-1, 1, step=dx), dtype=dtype)
+        y_train = torch.tensor(np.mean(np.array([np.sin(c * x_train.numpy()) for c in coefs]), axis=0))
+        y_valid = torch.tensor(np.mean(np.array([np.sin(c * x_valid.numpy()) for c in coefs]), axis=0))
 
-plt.plot(x_truth, y_truth, color='black', label='sinx(x)')
-plt.scatter(x_train, y_train, color='crimson', marker='o', label='training data')
-plt.scatter(x_valid, y_valid, color='goldenrod', marker='o', label='validation data')
-plt.legend(loc='lower left')
+        plt.plot(x_truth, y_truth, color='black', label='sinx(x)')
+        plt.scatter(x_train, y_train, color='crimson', marker='o', label='training data')
+        plt.scatter(x_valid, y_valid, color='goldenrod', marker='o', label='validation data')
+        plt.legend(loc='lower left')
 ```
 
 
@@ -322,32 +322,32 @@ plt.legend(loc='lower left')
 
 
 ```python
-width = 8
-model = SineNet(width)
-loss_fun = torch.nn.MSELoss()
-opt = torch.optim.Adam(model.parameters(), lr=0.01)
+        width = 8
+        model = SineNet(width)
+        loss_fun = torch.nn.MSELoss()
+        opt = torch.optim.Adam(model.parameters(), lr=0.01)
 
-train_loss_history = []
-valid_loss_history = []
+        train_loss_history = []
+        valid_loss_history = []
 
-max_epochs = 100
-for i in tqdm(range(max_epochs)):
-    train_loss, valid_loss = epoch(
-        x_train,
-        y_train,
-        model,
-        loss_fun,
-        opt=opt,
-        X_valid=x_valid,
-        y_valid=y_valid
-    )
-    train_loss_history.append(train_loss)
-    valid_loss_history.append(valid_loss)
+        max_epochs = 100
+        for i in tqdm(range(max_epochs)):
+            train_loss, valid_loss = epoch(
+                x_train,
+                y_train,
+                model,
+                loss_fun,
+                opt=opt,
+                X_valid=x_valid,
+                y_valid=y_valid
+            )
+            train_loss_history.append(train_loss)
+            valid_loss_history.append(valid_loss)
 
-plt.semilogy(train_loss_history)
-plt.semilogy(valid_loss_history)
-plt.xlabel('Epoch #')
-plt.ylabel('MSE Loss')
+        plt.semilogy(train_loss_history)
+        plt.semilogy(valid_loss_history)
+        plt.xlabel('Epoch #')
+        plt.ylabel('MSE Loss')
 ```
 
 
@@ -355,15 +355,15 @@ plt.ylabel('MSE Loss')
 
 
 ```python
-y_pred = []
-for x in x_truth:
-    y_pred.append(model(torch.tensor([x/np.pi], dtype=dtype).flatten()).detach().numpy())
+        y_pred = []
+        for x in x_truth:
+            y_pred.append(model(torch.tensor([x/np.pi], dtype=dtype).flatten()).detach().numpy())
 
-plt.plot(x_truth, y_truth, linewidth=2, color='black', label='sin(x)')
-plt.scatter(x_train, y_train, color='grey', marker='.', alpha=0.6, s=200, label='training data')
-plt.plot(x_truth, np.hstack(y_pred), linewidth=3, color='crimson', linestyle='--', label='Prediction')
-plt.ylim([-2,2])
-plt.legend(bbox_to_anchor=(1.04,1), loc="upper left")
+        plt.plot(x_truth, y_truth, linewidth=2, color='black', label='sin(x)')
+        plt.scatter(x_train, y_train, color='grey', marker='.', alpha=0.6, s=200, label='training data')
+        plt.plot(x_truth, np.hstack(y_pred), linewidth=3, color='crimson', linestyle='--', label='Prediction')
+        plt.ylim([-2,2])
+        plt.legend(bbox_to_anchor=(1.04,1), loc="upper left")
 ```
 
 
@@ -379,35 +379,35 @@ seems to offer generally better fits, but it's still not perfectly converging.
 
 
 ```python
-width = 8
-model = SineNet(width)
-loss_fun = torch.nn.MSELoss()
-opt = torch.optim.AdamW(model.parameters(), lr=0.001)
+        width = 8
+        model = SineNet(width)
+        loss_fun = torch.nn.MSELoss()
+        opt = torch.optim.AdamW(model.parameters(), lr=0.001)
 
-train_loss_history = []
-valid_loss_history = []
+        train_loss_history = []
+        valid_loss_history = []
 ```
 
 
 ```python
-max_epochs = 200
-for i in tqdm(range(max_epochs)):
-    train_loss, valid_loss = epoch(
-        x_train,
-        y_train,
-        model,
-        loss_fun,
-        opt=opt,
-        X_valid=x_valid,
-        y_valid=y_valid
-    )
-    train_loss_history.append(train_loss)
-    valid_loss_history.append(valid_loss)
+        max_epochs = 200
+        for i in tqdm(range(max_epochs)):
+            train_loss, valid_loss = epoch(
+                x_train,
+                y_train,
+                model,
+                loss_fun,
+                opt=opt,
+                X_valid=x_valid,
+                y_valid=y_valid
+            )
+            train_loss_history.append(train_loss)
+            valid_loss_history.append(valid_loss)
 
-plt.semilogy(train_loss_history)
-plt.semilogy(valid_loss_history)
-plt.xlabel('Epoch #')
-plt.ylabel('MSE Loss')
+        plt.semilogy(train_loss_history)
+        plt.semilogy(valid_loss_history)
+        plt.xlabel('Epoch #')
+        plt.ylabel('MSE Loss')
 ```
 
 ![png](../../../../../../imgs/sine_nets/output_21_3.png)
@@ -416,15 +416,15 @@ plt.ylabel('MSE Loss')
 
 
 ```python
-y_pred = []
-for x in x_truth:
-    y_pred.append(model(torch.tensor([x/np.pi], dtype=dtype).flatten()).detach().numpy())
+        y_pred = []
+        for x in x_truth:
+            y_pred.append(model(torch.tensor([x/np.pi], dtype=dtype).flatten()).detach().numpy())
 
-plt.plot(x_truth, y_truth, linewidth=2, color='black', label='sin(x)')
-plt.scatter(x_train, y_train, color='grey', marker='.', alpha=0.6, s=200, label='training data')
-plt.plot(x_truth, np.hstack(y_pred), linewidth=3, color='crimson', linestyle='--', label='Prediction')
-plt.ylim([-2,2])
-plt.legend(bbox_to_anchor=(1.04,1), loc="upper left")
+        plt.plot(x_truth, y_truth, linewidth=2, color='black', label='sin(x)')
+        plt.scatter(x_train, y_train, color='grey', marker='.', alpha=0.6, s=200, label='training data')
+        plt.plot(x_truth, np.hstack(y_pred), linewidth=3, color='crimson', linestyle='--', label='Prediction')
+        plt.ylim([-2,2])
+        plt.legend(bbox_to_anchor=(1.04,1), loc="upper left")
 ```
 
 ![png](../../../../../../imgs/sine_nets/output_22_1.png)
