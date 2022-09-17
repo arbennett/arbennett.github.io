@@ -5,10 +5,6 @@ date:   2021-08-18
 categories: Software, Machine-learning
 ---
 
-### Hey y'all: This is going to be a living document for the time being - I'm
-publishing this as I write, and so this won't be considered "finished" until I
-take this warning away
-
 It's pretty indisputable that machine learning is both trendy and effective in
 a number of Earth & environmental
 sciences. With the speed and uptake of, particularly, deep-learning methods
@@ -269,13 +265,7 @@ machine in a very small number of lines of code, and you retain the labels and
 metadata of your data. So now the question about how to reasonably access this
 data over the network.
 
-As xarray loads data lazily, now we need to figure out how to get the data across
-the network in an efficient an automated manner. To do this we'll implment a pytorch
-data loader.
-
-### Coming soon!
-
-## Understanding performance, avoiding pitfalls
-
-Gonna have to think on this before completion!
-
+As xarray loads data lazily, now you will need to figure out how to get the data across
+the network in an efficient an automated manner. This is largely going to depend on how
+your data is aranged/formatted, and is beyond the scope of this post. But, you now have
+the tools you need to load the data across the network.
