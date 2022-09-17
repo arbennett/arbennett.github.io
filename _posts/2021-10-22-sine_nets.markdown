@@ -17,17 +17,17 @@ itself. Starting there, let's do some imports...
 
 
 ```python
-%pylab inline
-import matplotlib as mpl
-import torch
-import torch.nn as nn
-import torch.nn.functional as F
-from tqdm.notebook import tqdm
-device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
+    %pylab inline
+    import matplotlib as mpl
+    import torch
+    import torch.nn as nn
+    import torch.nn.functional as F
+    from tqdm.notebook import tqdm
+    device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 
-# Set a bigger default plot size
-mpl.rcParams['figure.figsize'] = (12, 8)
-mpl.rcParams['font.size'] = 22
+    # Set a bigger default plot size
+    mpl.rcParams['figure.figsize'] = (12, 8)
+    mpl.rcParams['font.size'] = 22
 ```
 
 ## Setting up the initial experiment
