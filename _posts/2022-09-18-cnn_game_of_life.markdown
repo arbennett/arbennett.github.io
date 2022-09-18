@@ -313,7 +313,7 @@ plt.ylabel('Binary Cross Entropy Loss')
 ```
 
 
-![gif](../../../../../../imgs/cnn_game_of_life/output_16_2.fig)
+![png](../../../../../../imgs/cnn_game_of_life/output_16_2.png)
 
 
 
@@ -328,5 +328,5 @@ save_animation(out_hat, 'gol_cnn_good_fit.gif')
 
 
 
-![png](../../../../../../imgs/cnn_game_of_life/gol_cnn_good_fit.png)
+![gif](../../../../../../imgs/cnn_game_of_life/gol_cnn_good_fit.gif)
 
