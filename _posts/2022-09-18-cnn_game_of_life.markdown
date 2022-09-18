@@ -1,7 +1,7 @@
 ---
 layout: post
-title:  "Can a neural network play Conway's Game of Life?"
-date:   2022-08-18
+title:  "Can a neural network play Conways Game of Life?"
+date:   2022-09-18
 categories: Machine-learning
 ---
 
@@ -290,7 +290,7 @@ save_animation(out_hat, 'gol_cnn_bad_fit.gif')
 
 
 
-![png](../../../../../../imgs/cnn_game_of_life/gol_cnn_bad_fit.png)
+![gif](../../../../../../imgs/cnn_game_of_life/gol_cnn_bad_fit.png)
 
 
 
@@ -317,7 +317,7 @@ plt.ylabel('Binary Cross Entropy Loss')
 ```
 
 
-![png](../../../../../../imgs/cnn_game_of_life/output_16_2.png)
+![gif](../../../../../../imgs/cnn_game_of_life/output_16_2.png)
 
 
 
