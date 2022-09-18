@@ -1,3 +1,12 @@
+---
+layout: post
+title:  "Can a neural network play Conway's Game of Life?"
+date:   2022-08-18
+categories: Machine-learning
+---
+
+
+
 # Can a neural network play Conway's Game of Life?
 
 ## TL;DR: Yes!
