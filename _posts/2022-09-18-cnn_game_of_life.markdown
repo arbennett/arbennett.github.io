@@ -6,9 +6,6 @@ categories: Machine-learning
 ---
 
 
-
-# Can a neural network play Conway's Game of Life?
-
 ## TL;DR: Yes!
 
 ## Getting started

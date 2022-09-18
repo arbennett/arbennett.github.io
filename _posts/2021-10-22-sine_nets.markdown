@@ -5,7 +5,6 @@ date:   2021-10-22
 categories: Machine-learning
 ---
 
-# Some experiments on fitting neural networks on sine waves
 
 Been thinking about [this twitter post](https://twitter.com/cristiproist/status/1450299437192986625) a bit this
 week and wanted to give a few things a try. Originally I wanted to design a
