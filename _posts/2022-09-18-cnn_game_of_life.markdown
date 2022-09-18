@@ -5,7 +5,6 @@ date:   2022-09-18
 categories: Machine-learning
 ---
 
-
 ## TL;DR: Yes!
 
 ## Getting started
@@ -287,7 +286,7 @@ save_animation(out_hat, 'gol_cnn_bad_fit.gif')
 
 
 
-![gif](../../../../../../imgs/cnn_game_of_life/gol_cnn_bad_fit.png)
+![gif](../../../../../../imgs/cnn_game_of_life/gol_cnn_bad_fit.gif)
 
 
 
@@ -314,7 +313,7 @@ plt.ylabel('Binary Cross Entropy Loss')
 ```
 
 
-![gif](../../../../../../imgs/cnn_game_of_life/output_16_2.png)
+![gif](../../../../../../imgs/cnn_game_of_life/output_16_2.fig)
 
 
 
