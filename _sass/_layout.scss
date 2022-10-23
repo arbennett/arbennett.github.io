@@ -21,7 +21,12 @@
     letter-spacing: -1.25px;
     margin-bottom: 0px;
     float: left;
-
+    a {
+        color: GhostWhite;
+    }
+    &:visited {
+            color: GhostWhite;
+        }
 }
 
 .about {
