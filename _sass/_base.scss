@@ -24,6 +24,7 @@ p, blockquote, pre,
 ul, ol, dl, figure,
 %vertical-rhythm {
     font-family: $base-font-family;
+    font-stretch: semi-condensed;
     font-weight: 300;
     margin-bottom: $spacing-unit;
 }
