@@ -24,17 +24,16 @@ h1, h2, h3, h4, h5, h6,
 p, blockquote, pre,
 ul, ol, dl, figure,
 %vertical-rhythm {
-    font-family: $base-font-family;
+    font-family: $header-font-family;
     margin-bottom: $spacing-unit;
 }
 
 h1, h2, h3, h4, h5, h6 {
-    font-family: $base-font-family;
+    font-family: $header-font-family;
     margin-top: 1.5*$spacing-unit;
 }
 
 h1 {
-    font-family: $base-font-family;
     font-weight: 300;
     margin-left: -70px;
     padding: 10px;
@@ -47,7 +46,6 @@ h1 {
 }
 
 h2, h3, h4, h5, h6 {
-    font-family: $base-font-family;
     font-weight: 300;
     margin-left: -35px;
     padding: 10px;
