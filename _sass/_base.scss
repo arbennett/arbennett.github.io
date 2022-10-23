@@ -20,17 +20,18 @@ html {
     flex-direction: column;
 }
 
-h1, h2, h3, h4, h5, h6,
 p, blockquote, pre,
 ul, ol, dl, figure,
 %vertical-rhythm {
-    font-family: $header-font-family;
+    font-family: $base-font-family;
+    font-weight: 300;
     margin-bottom: $spacing-unit;
 }
 
 h1, h2, h3, h4, h5, h6 {
     font-family: $header-font-family;
     margin-top: 1.5*$spacing-unit;
+    margin-bottom: $spacing-unit;
 }
 
 h1 {
