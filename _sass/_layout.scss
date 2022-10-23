@@ -15,7 +15,7 @@
 
 .site-title {
     font-family: $header-font-family;
-    color: white;//$grey-color-dark;
+    color: GhostWhite;//$grey-color-dark;
     font-size: 24px;
     line-height: 44px;
     letter-spacing: -1.25px;
@@ -23,7 +23,7 @@
     float: left;
 
     &, &:visited {
-        color: $grey-color;
+        color: LightCyan;
     }
 }
 
@@ -39,12 +39,16 @@
     float: right;
     line-height: 44px;
 
+
+    a {
+        color: LightCyan;
+    }
+
     .menu-icon {
         display: none;
     }
 
     .page-link {
-        color: $grey-color;
         line-height: $base-line-height;
 
         // Gaps between nav items, but not on the first one
@@ -76,7 +80,7 @@
                 height: 15px;
 
                 path {
-                    fill: $grey-color-dark;
+                    fill: GhostWhite;
                 }
             }
         }
